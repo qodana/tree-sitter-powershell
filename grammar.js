@@ -10,7 +10,8 @@ const PREC = {
 export default grammar({
   name: 'powershell',
 
-  externals: ($) => [$._statement_terminator],
+  // `_error_sentinel` is in no rule: the scanner sees it valid only during error recovery.
+  externals: ($) => [$._statement_terminator, $._lone_dash, $._double_dash, $._error_sentinel],
 
   extras: ($) => [
     $.comment,
@@ -778,6 +779,10 @@ export default grammar({
         PREC.PARAM,
         choice(
           seq($.command_argument_sep, optional($.generic_token)),
+          // A lone `-` or `--` followed by a separator (`python -`, `git checkout -- f`): the scanner looks past it, so
+          // `-b` stays a parameter, `-1` an expression, and an operator of an expression is never read here.
+          seq($.command_argument_sep, alias($._lone_dash, $.generic_token)),
+          seq($.command_argument_sep, alias($._double_dash, $.command_parameter)),
           seq($.command_argument_sep, $.array_literal_expression),
           $.parenthesized_expression,
           $.script_block_expression,

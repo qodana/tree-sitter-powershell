@@ -2493,6 +2493,10 @@
           "named": true
         },
         {
+          "type": "command_parameter",
+          "named": true
+        },
+        {
           "type": "element_access",
           "named": true
         },

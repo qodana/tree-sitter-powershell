@@ -4335,6 +4335,42 @@
                 "name": "command_argument_sep"
               },
               {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_lone_dash"
+                },
+                "named": true,
+                "value": "generic_token"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "command_argument_sep"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_double_dash"
+                },
+                "named": true,
+                "value": "command_parameter"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "command_argument_sep"
+              },
+              {
                 "type": "SYMBOL",
                 "name": "array_literal_expression"
               }
@@ -6497,6 +6533,18 @@
     {
       "type": "SYMBOL",
       "name": "_statement_terminator"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_lone_dash"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_double_dash"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_error_sentinel"
     }
   ],
   "inline": [],
